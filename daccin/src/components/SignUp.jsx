@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 
 
 
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -54,6 +55,10 @@ export default function SignUp() {
   
 
 
+  const responseGoogle = (response) => {
+    console.log(response.profileObj);
+    setName(response.profileObj.givenName);
+  }
 
   const handleSubmit=(event)=>{
     event.preventDefault();
@@ -115,6 +120,7 @@ export default function SignUp() {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                value={name}
                 helperText={errorName? "llenar campo":""}
                 error={errorName}
                 onchange={e=>setName(e.target.value)}
@@ -210,6 +216,7 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
+          
           
         </form>
       </div>

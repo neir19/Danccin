@@ -4,6 +4,7 @@ import {Modal,Backdrop,Fade,TextField,Button,FormControl} from '@material-ui/cor
 import {Link} from 'react-router-dom';
 import '../styles/Login.css'
 import SignUp from '../components/SignUp'
+import GoogleLogin from 'react-google-login';
 
 const usesStyles =makeStyles((theme)=> ({
   modal: {
@@ -33,6 +34,11 @@ function Login (){
   const [open, setOpen]=React.useState(false);
 
   const classes=usesStyles();
+
+  const responseGoogle = (response) => {
+    console.log(response.profileObj);
+    
+  }
 
   const handleOpen = () =>{
     setOpen(true);
@@ -98,6 +104,13 @@ function Login (){
                       color="primary">Login</Button>
                     <Link
                       onClick={handleOpen}> SIGN UP</Link>
+                    <GoogleLogin
+                      clientId="179336870679-id1md658b470m84gr27fnfjf9urn8cm2.apps.googleusercontent.com"
+                      buttonText="Google"
+                      onSuccess={responseGoogle}
+                      onFailure={responseGoogle}
+                      cookiePolicy={'single_host_origin'}
+                    />,
                     
                   </FormControl>
                   <div>
@@ -115,6 +128,7 @@ function Login (){
                     >
                       <Fade in={open}>
                         <div className={classes.paper}>
+                        
                           <SignUp/>
             
                         </div>
